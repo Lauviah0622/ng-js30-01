@@ -1,4 +1,4 @@
 <div class="drum-kit-outer">
-    <app-drum-keys [keyInfos]="keyInfos"></app-drum-keys>
-    <app-press-events></app-press-events>
+    <app-drum-keys [keyInfos]="keyInfos" (pressEvent)="getPressEvent($event)" ></app-drum-keys>
+    <app-press-events [parentSubject]="parentSubject" ></app-press-events>
 </div>

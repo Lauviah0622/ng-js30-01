@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-drum-keys',
@@ -7,11 +7,22 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class DrumKeysComponent implements OnInit {
 
-  @Input() keyInfos 
+  @Input() keyInfos;
 
-  constructor() { }
+  @Output() public pressEvent = new EventEmitter
+
+  constructor() {
+    console.log(this.keyInfos)
+  }
 
   ngOnInit() {
+  }
+
+  sendPressEvent(event) {
+    // this.pressEvent = event;
+    // console.log(`keys`)
+    // console.log(event)
+    this.pressEvent.emit(event)
   }
 
 }

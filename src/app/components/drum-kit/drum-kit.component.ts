@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { keyInfoArray } from '../../info/key-info-arr';
 import { KeyInterface } from '../../models/keyframe';
+import { Subject } from 'rxjs';
+import { ThrowStmt } from '@angular/compiler';
 
 @Component({
   selector: 'app-drum-kit',
@@ -10,6 +12,14 @@ import { KeyInterface } from '../../models/keyframe';
 export class DrumKitComponent implements OnInit {
 
   keyInfos:KeyInterface[] = [];
+
+  pressEvent:KeyboardEvent;
+
+  parentSubject:Subject<any> = new Subject();
+
+  notifyChildren() {
+    this.parentSubject.next(this.pressEvent);
+  }
 
   makeKey(infoArray):KeyInterface {
     return {
@@ -28,6 +38,13 @@ export class DrumKitComponent implements OnInit {
   }
   
   ngOnInit() {
+  }
+
+  getPressEvent(event) {
+    // console.log('kit')
+    // console.log(event)
+    this.pressEvent = event
+    this.notifyChildren()
   }
 
 }

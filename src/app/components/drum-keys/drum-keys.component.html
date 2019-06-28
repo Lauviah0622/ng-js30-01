@@ -1,7 +1,7 @@
 <div>
-
     <app-instrument-key 
     *ngFor="let keyInfo of keyInfos"
     [keyInfo]="keyInfo"
+    (pressEvent)="sendPressEvent($event)"
     ></app-instrument-key>
 </div>    

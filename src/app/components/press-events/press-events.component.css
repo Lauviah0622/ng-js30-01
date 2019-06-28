@@ -1,4 +1,13 @@
 div {
-    border: 1px solid #000;
+    border: 1px solid #ffffff;
+    background-color: #fff;
     margin: 10px;
+    width: 200px;
+    height: 25rem;
+}
+
+
+li {
+    list-style: none;
+    font-size: 2rem;
 }

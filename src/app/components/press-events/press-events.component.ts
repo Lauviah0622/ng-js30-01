@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-press-events',
@@ -7,9 +8,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PressEventsComponent implements OnInit {
 
-  constructor() { }
+  keyEventArray:KeyboardEvent[] = []
+
+  @Input() parentSubject:Subject<any>;
 
   ngOnInit() {
+    this.parentSubject.subscribe(event => {
+      // console.log(event)a
+      this.keyEventArray.push(event.key)
+      console.log(this.keyEventArray)
+      if(this.keyEventArray.length > 10) this.keyEventArray.shift()
+    })
+  }
+
+  printEvent(pressEvent) {
+    console.log('pressevent')
+    console.log(pressEvent)
+    // this.instrumentKeyEvents.push(pressEvent)
   }
 
 }
